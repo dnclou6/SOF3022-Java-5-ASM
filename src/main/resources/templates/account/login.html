@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+    <!-- Trong file account/forgotpassword.html hoặc tương tự -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var successMessage = /*[[@{${successMessage}}]]*/ null;
+        var errorMessage = /*[[@{${message}}]]*/ null;
+
+        // Function to display message
+        function showMessage(message, messageType) {
+            var alertDiv = document.createElement('div');
+            alertDiv.classList.add('alert');
+            alertDiv.classList.add('alert-' + messageType);
+            alertDiv.setAttribute('role', 'alert');
+            alertDiv.textContent = message;
+
+            var container = document.getElementById('messageContainer');
+            container.appendChild(alertDiv);
+        }
+
+        // Show success or error message if available
+        if (successMessage) {
+            showMessage(successMessage, 'success');
+        }
+        if (errorMessage) {
+            showMessage(errorMessage, 'danger');
+        }
+        /*]]>*/
+    </script>
+
+</head>
+<body>
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+
+<!--    <img src="https://i.pinimg.com/originals/8f/f0/26/8ff026a0bf6fb6e8eb2dca531f6a756f.png"-->
+<!--         alt="Logo" class="img-fluid">-->
+
+    <div class="border col-md-6 col-lg-4 rounded border-black p-3">
+        <form th:action="@{login}" method="post">
+            <div id="messageContainer"></div>
+            <h3 class="text-center">Đăng Nhập</h3>
+
+            <!-- Hiển thị thông báo -->
+            <div th:if="${message}" class="alert alert-primary" role="alert">
+                <i th:text="${message}"></i>
+            </div>
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Tên đăng nhập:</label>
+                <input id="name" th:id="name" th:name="name" type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Mật Khẩu:</label>
+                <input id="password" th:id="password" th:name="password" type="password" class="form-control" required>
+            </div>
+
+            <div class="mb-3 form-check">
+                <input id="remember" name="remember" type="checkbox" class="form-check-input">
+                <label for="remember" class="form-check-label">Nhớ tôi?</label>
+            </div>
+
+            <hr>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Đăng nhập</button>
+                <a th:href="@{/account/register}" class="btn btn-danger">Đăng ký</a>
+            </div>
+
+            <div class="mt-2">
+                <a th:href="@{/account/forgotpassword}">Bạn quên mật khẩu?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap JS and jQuery (if needed) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-Fa9s7+2ky6C/Dc8clwTJUf5v4UJ6QQVihJQxCXZS3z+BiFeVcXjFOF9dH4z/Q2F1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+xgfe5FpTcE+3S+joELZjq4c+B44U/6Piq"
+        crossorigin="anonymous"></script>
+</body>
+</html>
