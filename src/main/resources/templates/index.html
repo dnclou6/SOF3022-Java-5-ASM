@@ -55,7 +55,14 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow">
                         <li><a class="dropdown-item" href="/profile"><i class="fa-solid fa-id-badge me-2"></i>Thông tin tài khoản</a></li>
-                        <li><a class="dropdown-item text-danger" href="/logout"><i class="fa-solid fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+                        <li>
+                            <form th:action="@{/logout}" method="post" class="d-inline">
+                                <button type="submit" class="dropdown-item text-danger">
+                                    <i class="fa-solid fa-sign-out-alt me-2"></i>Đăng xuất
+                                </button>
+                            </form>
+                        </li>
+
                     </ul>
                 </li>
             </ul>
@@ -85,7 +92,7 @@
                         <i class="fa-solid fa-eye"></i> Xem chi tiết
                     </a>
 
-                    <form th:action="@{/cart/add/{id}(id=${product.id})}" method="post" style="display: inline;">
+                    <form th:action="@{/cart/add/{id}/{quantity}(id=${product.id}, quantity=1)}" method="post" style="display: inline;">
                         <button type="submit" class="btn btn-outline-dark">
                             <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
                         </button>

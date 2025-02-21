@@ -1,12 +1,12 @@
 package com.example.AsmGD1.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+//import lombok.Data;
 import java.util.Date;
 
 @Entity
 @Table(name = "Users")
-@Data
+//@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

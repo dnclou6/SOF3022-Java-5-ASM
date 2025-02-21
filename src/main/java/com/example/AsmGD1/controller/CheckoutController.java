@@ -25,7 +25,7 @@ public class CheckoutController {
     @GetMapping("")
     public String checkoutPage(Model model) {
         // Lấy giỏ hàng từ dịch vụ, không cần userId
-        List<Cart> cartItems = cartService.getCart();
+        List<Cart> cartItems = cartService.getCartByUser();
         if (cartItems.isEmpty()) {
             return "redirect:/cart";
         }
@@ -42,7 +42,7 @@ public class CheckoutController {
     public String processCheckout(@RequestParam String name,
                                   @RequestParam String address,
                                   @RequestParam String phone) {
-        List<Cart> cartItems = cartService.getCart();
+        List<Cart> cartItems = cartService.getCartByUser();
         if (cartItems.isEmpty()) {
             return "redirect:/cart";
         }
